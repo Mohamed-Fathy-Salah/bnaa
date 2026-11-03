@@ -4,6 +4,8 @@ Estimate the cost, materials and time needed to finish a flat, track the actual 
 
 Bnaa is a static web app: no server, no database, no account. It works on desktop and phones, in English and Arabic, and offline once installed.
 
+**Live app: https://mohamed-fathy-salah.github.io/bnaa/**
+
 ## Features
 
 - **Materials library**: each material has a category, a unit (m, m², m³, piece, …), a material price, a worker price and the days needed per unit. Prices and days are `from – to` ranges; an empty `to` equals `from`.
@@ -38,7 +40,7 @@ npm run preview    # serve the production build locally
 
 ### Deploying
 
-Upload the contents of `dist/` to any static host (GitHub Pages, Netlify, Cloudflare Pages, …). It works from a sub-path. The host must serve it over HTTPS for offline mode to work.
+Every push to `main` runs the tests and deploys to GitHub Pages (`.github/workflows/deploy.yml`). To host it elsewhere, upload the contents of `dist/` to any static host (GitHub Pages, Netlify, Cloudflare Pages, …). It works from a sub-path. The host must serve it over HTTPS for offline mode to work.
 
 ### Offline and installing
 
