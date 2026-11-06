@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import GeminiKey from '../components/GeminiKey';
 import { Field, NumInput } from '../components/ui';
 import { defaultData } from '../defaults';
 import { promptInstall, usePwa } from '../pwa';
@@ -42,6 +43,12 @@ export default function SettingsPage() {
             <NumInput value={data.settings.defaultHeight} onChange={(v) => setSetting('defaultHeight', v ?? 3)} />
           </Field>
         </div>
+      </section>
+
+      <section className="card">
+        <h2>{t('receipt.settingsTitle')}</h2>
+        <p className="muted">{t('receipt.settingsHint')}</p>
+        <GeminiKey />
       </section>
 
       <section className="card">

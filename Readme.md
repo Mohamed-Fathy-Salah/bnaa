@@ -16,6 +16,7 @@ Bnaa is a static web app: no server, no database, no account. It works on deskto
   - **Steps** that apply to every room or to selected rooms, each with its own materials and the steps it must wait for.
   - **Estimate** of material cost, worker cost, total cost and duration, broken down by step and by material, with a timeline chart.
 - **Actual results**: record the start and end dates and actual costs, optionally per step. Setting the end date moves the flat to *Finished* and shows the estimate next to the actual results, so you can adjust prices and times.
+- **Receipt scanning**: photograph a receipt (or choose a PDF) on a flat's *Actual* tab. Google Gemini reads the items and suggests a step for each; after you review them, the amounts are added to the steps' and the flat's actual costs. It uses your own free Gemini API key from Google AI Studio, which is saved only in this browser and is not included in exported backups.
 - **Reports**: select several flats (in progress or finished) to compare materials, workers and time per flat, with shared totals. Save the report as a PDF.
 - **Your data**: everything is saved in the browser. Export it to a JSON file to back it up or move it to another device, and import it again later.
 

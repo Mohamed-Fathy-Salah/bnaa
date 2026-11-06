@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import type { FlatEstimate } from '../estimate';
 import { useStore } from '../store';
 import type { Flat, MinMax, StepActual } from '../types';
 import { daysBetween, mid } from '../utils';
+import ReceiptScan from './ReceiptScan';
 import { Field, NumInput } from './ui';
 
 interface Row {
@@ -55,6 +57,7 @@ function CompareTable({ rows }: { rows: Row[] }) {
 
 export default function ActualView({ flat, est, setFlat }: { flat: Flat; est: FlatEstimate; setFlat: (fn: (f: Flat) => Flat) => void }) {
   const { data, t, label } = useStore();
+  const [scanning, setScanning] = useState(false);
   const set = (patch: Partial<Flat>) => setFlat((f) => ({ ...f, ...patch }));
   const setStepActual = (stepId: string, patch: StepActual) =>
     setFlat((f) => ({ ...f, steps: f.steps.map((s) => (s.id === stepId ? { ...s, actual: { ...s.actual, ...patch } } : s)) }));
@@ -84,7 +87,10 @@ export default function ActualView({ flat, est, setFlat }: { flat: Flat; est: Fl
   return (
     <div>
       <section className="card">
-        <h2>{t('actual.title')}</h2>
+        <div className="card-head">
+          <h2>{t('actual.title')}</h2>
+          <button className="btn" onClick={() => setScanning(true)}>🧾 {t('receipt.scan')}</button>
+        </div>
         <div className="form-grid">
           <Field label={t('actual.start')}>
             <input type="date" value={flat.actualStart ?? ''} onChange={(e) => set({ actualStart: e.target.value || undefined })} />
@@ -140,6 +146,8 @@ export default function ActualView({ flat, est, setFlat }: { flat: Flat; est: Fl
           </div>
         </section>
       )}
+
+      {scanning && <ReceiptScan flat={flat} setFlat={setFlat} onClose={() => setScanning(false)} />}
     </div>
   );
 }
